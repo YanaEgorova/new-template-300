@@ -1,3 +1,6 @@
+.hero-wrapper-main {
+  background-color: var(--first-brand-color);
+}
 .hero {
   text-align: center;
   padding: 10rem 0;
@@ -10,6 +13,24 @@
 .hero .text {
   max-width: 30rem;
   margin: 0 auto 2rem;
+}
+.hero-block {
+  margin-bottom: 3rem;
+}
+.hero-img {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  max-height: 40rem;
+  object-fit: cover;
+  border-radius: 5rem;
+}
+.hero-btn {
+  display: flex;
+  align-items: center;
+}
+.hero-btn svg {
+  margin-left: 2rem;
 }
 
 .policy {
@@ -33,6 +54,10 @@
   display: flex;
   flex-direction: column;
   gap: 6rem;
+}
+.policy .hero-btn {
+  background-color: transparent;
+  border: none;
 }
 
 .phrase__wrapper {
@@ -98,4 +123,109 @@
 }
 
 @media screen and (min-width: 1440px) {
+  .hero {
+    text-align: left;
+    padding: 5rem 10rem;
+  }
+  .hero .title {
+    margin: 0 0 5rem 0;
+  }
+  .hero .title::first-letter {
+    color: var(--sub-text-color);
+  }
+  .hero-block {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 5rem;
+  }
+  .hero-img {
+    border-radius: 10rem;
+  }
+  .hero .hero-btn {
+    margin: 0 10rem 0 0;
+  }
+  .hero .text {
+    margin: 0;
+  }
+
+  .policy {
+    text-align: left;
+    padding: 5rem 10rem;
+  }
+  .policy-list {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .policy-item-title {
+    color: var(--sub-text-color);
+    position: relative;
+    background-color: var(--first-brand-color);
+    margin-left: 2rem;
+    position: relative;
+    z-index: 3;
+    width: fit-content;
+    padding: 0 2rem;
+  }
+  .policy-item {
+    position: relative;
+  }
+  .policy-item::after {
+    position: absolute;
+    display: block;
+    content: '';
+    width: calc(100% + 4rem);
+    height: calc(100% + 1rem);
+    border: 0.2rem solid var(--second-brand-color);
+    top: 1rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 3rem;
+    pointer-events: none;
+  }
+
+  .contacts {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    padding: 10rem;
+  }
+  .contacts .btn {
+    margin-left: 0;
+  }
+  .contacts-block {
+    margin: 0;
+  }
+  .contacts-item {
+    background-color: var(--third-brand-color);
+    padding: 1.5rem 3rem;
+    border-radius: 3rem;
+    display: flex;
+    align-items: center;
+  }
+  .contacts-span {
+    margin: 0 3rem 0 0;
+    color: var(--sub-text-color);
+  }
+  .contacts-item .text {
+    color: var(--sub-text-color);
+  }
+
+  .question {
+    padding: 10rem;
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+  }
+  .question .sub-title {
+    margin: 0;
+  }
+  .question-sub-title {
+    border: 0.2rem solid var(--second-brand-color);
+    padding: 1.5rem 3rem;
+     border-radius: 3rem;
+     margin-bottom: 2rem;
+     color: var(--sub-text-color);
+  }
 }

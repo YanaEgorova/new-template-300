@@ -8,7 +8,7 @@
     <title>Shop</title>
   </head>
 
-  <body>
+  <body class="hero-wrapper-main">
     <div class="wrapper">
       <div class="error__overlay js_error__overlay">
         <div class="error">
@@ -66,8 +66,16 @@
           <div class="container">
             <section class="hero">
               <h1 class="title js_main-title"></h1>
-              <p class="text js_sub-title"></p>
-              <a href="#products" class="btn">our products</a>
+              <div class="hero-block">
+                <p class="text js_sub-title"></p>
+                <a href="#products" class="hero-btn btn"
+                  >our products
+                  <svg width="20" height="13">
+                    <use href="./img/icons/icons.svg#icon-right-arrow"></use>
+                  </svg>
+                </a>
+              </div>
+              <img src="./img/bg.jpeg" alt="" class="hero-img" />
             </section>
           </div>
         </div>
@@ -83,7 +91,11 @@
                     We are committed to providing an exciting and safe online shopping experience and elevated level of
                     personal service synonymous with the Company.
                   </p>
-                  <a href="./privacy.html" class="btn">read more</a>
+                  <a href="./privacy.html" class="hero-btn btn">read more
+                      <svg width="20" height="13">
+                    <use href="./img/icons/icons.svg#icon-right-arrow"></use>
+                  </svg>
+                  </a>
                 </li>
                 <li class="policy-item">
                   <h3 class="policy-item-title">Return policy</h3>
@@ -91,21 +103,18 @@
                     The items are eligible for free replacement, within 30 days of delivery, in an unlikely event of
                     damaged, defective or different item delivered to you.
                   </p>
-                  <a href="./return.html" class="btn">read more</a>
+                  <a href="./return.html" class="hero-btn btn">read more
+                      <svg width="20" height="13">
+                    <use href="./img/icons/icons.svg#icon-right-arrow"></use>
+                  </svg>
+                  </a>
                 </li>
               </ul>
             </section>
           </div>
         </div>
 
-        <div class="phrase__wrapper">
-          <div class="container">
-            <section class="phrase">
-              <h2 class="title">Here to make your life easier</h2>
-              <a href="./shop.html" class="btn">go to cart</a>
-            </section>
-          </div>
-        </div>
+    
 
         <div class="contacts__wrapper">
           <div class="container">

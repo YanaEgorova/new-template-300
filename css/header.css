@@ -91,7 +91,7 @@ body.open-menu {
 .cart__btn {
   display: none;
   align-items: center;
-  background-color: var(--main-text-color);
+  background-color: var(--second-brand-color);
   border-radius: 1rem;
   width: fit-content;
   margin: 0 auto;
