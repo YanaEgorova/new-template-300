@@ -5,7 +5,7 @@ body.open-menu {
   overflow: hidden;
 }
 .header {
-  padding: 1.5rem 0;
+  padding: 1rem 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -18,8 +18,8 @@ body.open-menu {
     color: var(--first-brand-color);
 } */
 .header__btn {
-  width: 6rem;
-  height: 5rem;
+  width: 4rem;
+  height: 3rem;
   position: relative;
   z-index: 10;
   cursor: pointer;
@@ -91,28 +91,30 @@ body.open-menu {
 .cart__btn {
   display: none;
   align-items: center;
-  background-color: var(--main-text-color);
   border-radius: 1rem;
   width: fit-content;
   margin: 0 auto;
   padding: 1rem;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  -webkit-box-shadow: 0rem 0rem 1.5rem 0rem var(--second-brand-color);
+  -moz-box-shadow: 0rem 0rem 1.5rem 0rem var(--second-brand-color);
+  box-shadow: 0rem 0rem 1.5rem 0rem var(--second-brand-color);
 }
-.cart__btn-svg {
+.cart__btn svg {
   width: 2rem;
   height: auto;
   display: block;
   margin-right: 1rem;
-  fill: var(--sub-text-color);
+  fill: var(--second-brand-color);
 }
 .cart__btn .cart__span {
   font-size: 2.2rem;
   font-family: var(--title-font);
-  color: var(--sub-text-color);
+  color: var(--second-brand-color);
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1024px) {
   .cart__btn {
     display: flex;
     margin-left: 2rem;
