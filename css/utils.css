@@ -121,7 +121,7 @@ body.error-active .error__overlay {
 }
 .error__text {
   display: block;
-  color: red !important;
+  color: red;
   font-family: var(--main-font);
   margin-bottom: 2rem;
 }
@@ -177,7 +177,7 @@ body.error-active .error__overlay {
 }
 .btn {
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin: 0 auto;
   position: relative;
   text-decoration: none;
@@ -187,14 +187,11 @@ body.error-active .error__overlay {
   display: block;
   text-transform: uppercase;
   font-family: var(--title-font);
-  border: none;
-  background-color: transparent;
-  color: var(--second-brand-color);
+  border: 0.2rem solid var(--second-brand-color);
+  background-color: var(--second-brand-color);
+  color: var(--main-text-color);
   transition: all 0.3s ease-in-out;
-  border-radius: 5rem;
-  -webkit-box-shadow: 0rem 0rem 1.5rem 0rem var(--second-brand-color);
-  -moz-box-shadow: 0rem 0rem 1.5rem 0rem var(--second-brand-color);
-  box-shadow: 0rem 0rem 1.5rem 0rem var(--second-brand-color);
+  border-radius: 3rem;
 }
 
 .bold {

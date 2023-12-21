@@ -1,6 +1,6 @@
 :root {
   --main-bg-color: #fff;
-  --sub-bg-color: #121212;
+  --sub-bg-color: #000;
   --main-text-color: #000;
   --sub-text-color: #fff;
   --inactive: #818181;
@@ -8,8 +8,10 @@
   --link-color: blue;
   --accent-color: #ff0000;
 
-  --first-brand-color: #414141;
-  --second-brand-color: #f15047;
+
+  --first-brand-color: #c5c7c8;
+  --second-brand-color: #b4b6b7;
+  --third-brand-color: #676767;
 
   --main-font: 'Poppins';
   --title-font: 'Poppins Bold';
