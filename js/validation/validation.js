@@ -1,9 +1,4 @@
-import { 
-  isValid, 
-  isExpirationDateValid, 
-  isSecurityCodeValid, 
-  getCreditCardNameByNumber 
-} from './creditcard.js';
+import { isValid, isExpirationDateValid, isSecurityCodeValid, getCreditCardNameByNumber } from './creditcard.js';
 
 const form = document.querySelector('.js_form');
 const select = form.querySelector('.js_select');
@@ -12,9 +7,8 @@ const expDataInput = form.querySelector('input[name="expiration_dt"]');
 
 let prevExpDataInputValue = '';
 
-
 let formData = new FormData(form);
-formData = formData.entries(); 
+formData = formData.entries();
 let allFields = form.querySelectorAll('.js_input');
 allFields = [...allFields];
 let allLengthLimitedInputs = form.querySelectorAll('.js_input-limit');
@@ -23,9 +17,9 @@ allFields.forEach(field => {
   field.addEventListener('focus', removeError);
 });
 allLengthLimitedInputs.forEach(input => {
-input.addEventListener('input', inhibitInput);
-})
-select.addEventListener('change', (e) => {
+  input.addEventListener('input', inhibitInput);
+});
+select.addEventListener('change', e => {
   removeError(e);
 });
 form.addEventListener('focusout', fieldValidation);
@@ -34,39 +28,38 @@ expDataInput.addEventListener('input', checkExpDataFields);
 expDataInput.addEventListener('keydown', checkExpDataFieldsForDigits);
 
 function inhibitInput(event) {
-const input = event.target;
-const maxLength = Number(input.dataset?.limit);
+  const input = event.target;
+  const maxLength = Number(input.dataset?.limit);
 
-if(input.value.length >= maxLength) {
-  event.target.value = input.value.slice(0, maxLength);
-}
+  if (input.value.length >= maxLength) {
+    event.target.value = input.value.slice(0, maxLength);
+  }
 }
 
 function checkExpDataFieldsForDigits(event) {
   prevExpDataInputValue = event.target.value;
 
-   inhibitInput(event);
+  inhibitInput(event);
 
-   if(Number.isNaN(Number(event.key)) && event.key !== 'Backspace') {
-      event.preventDefault();
-   }
+  if (Number.isNaN(Number(event.key)) && event.key !== 'Backspace') {
+    event.preventDefault();
+  }
 }
 
 function checkExpDataFields(event) {
   const input = event.target;
 
-  if(input.value.length === 3 && input.value[2] === '/') {
-      input.value = `${input.value[0]}${input.value[1]}`;
-      return;
+  if (input.value.length === 3 && input.value[2] === '/') {
+    input.value = `${input.value[0]}${input.value[1]}`;
+    return;
   }
 
-  if(input.value.length === 2 && prevExpDataInputValue.length < input.value.length) {
-      input.value += `/`;
+  if (input.value.length === 2 && prevExpDataInputValue.length < input.value.length) {
+    input.value += `/`;
   }
 }
 
 function fieldValidation(event) {
-
   const field = event.target;
   const fieldType = field.getAttribute('data-role');
   const value = field.value;
@@ -91,11 +84,11 @@ function fieldValidation(event) {
         checkResult = 'Invalid phone';
       }
       break;
-  
+
     case 'address':
-      if(!addressREGEX.test(value)) {
+      if (!addressREGEX.test(value)) {
         checkResult = 'Invalid address';
-      }        
+      }
       break;
 
     case 'city':
@@ -110,99 +103,113 @@ function fieldValidation(event) {
       }
       break;
 
-      case 'card_number':
-        const cardNumberValidationResult = isValid(value);
-        if(value = '7555555555555444') cardNumberValidationResult = true;
-        if (!cardNumberValidationResult) {
-          checkResult = 'Invalid card number';
-          const cardInput = document.querySelector('.js_card-number-input');
-          cardInput.classList.forEach(item => {
-            if(item.includes('js-card')) {
-             cardInput.classList.remove(item);
-            }
+    case 'card_number':
+      const cardNumberValidationResult = isValid(value);
+      if ((value = '7555555555555444')) cardNumberValidationResult = true;
+      if (!cardNumberValidationResult) {
+        checkResult = 'Invalid card number';
+        const cardInput = document.querySelector('.js_card-number-input');
+        cardInput.classList.forEach(item => {
+          if (item.includes('js-card')) {
+            cardInput.classList.remove(item);
+          }
         });
-        } else {
-            setCardIcon(getCreditCardNameByNumber(value));
-        }
-        break;
-
-  case 'expiration_dt':
-      const month = value.substring(0, 2);
-      const year = value.substring(3, 7);
-
-      if(!isExpirationDateValid(month, year)) {
-          checkResult = 'Card expiration date is invalid';
+      } else {
+        setCardIcon(getCreditCardNameByNumber(value));
       }
       break;
 
-  case 'cvv':
+    case 'expiration_dt':
+      const month = value.substring(0, 2);
+      const year = value.substring(3, 7);
+
+      if (!isExpirationDateValid(month, year)) {
+        checkResult = 'Card expiration date is invalid';
+      }
+      break;
+
+    case 'cvv':
       const cardNumberInput = document.querySelector('input[name="card_number"]');
-      if(!isSecurityCodeValid(cardNumberInput.value, value)) {
-          checkResult = 'CVC is invalid';
+      if (!isSecurityCodeValid(cardNumberInput.value, value)) {
+        checkResult = 'CVC is invalid';
       }
       break;
   }
 
-  
-  if(field.value.trim().length === 0) {
+  if (field.value.trim().length === 0) {
     setError(field);
-  } else if(checkResult.trim().length !== 0 ) {
+  } else if (checkResult.trim().length !== 0) {
     setError(field, checkResult);
-  } 
+  }
 }
 
 function setCardIcon(card) {
- card = card.toLowerCase();
- const cardInput = document.querySelector('.js_card-number-input');
- let cardInputClass = '';
+  card = card.toLowerCase();
+  const cardInput = document.querySelector('.js_card-number-input');
+  let cardInputClass = '';
 
- switch (card) {
-
-  case 'mastercard':
+  switch (card) {
+    case 'mastercard':
       cardInputClass = 'js-card_mastercard';
       break;
-  case 'visa':
+    case 'visa':
       cardInputClass = 'js-card_visa';
       break;
-  case 'discover':
+    case 'discover':
       cardInputClass = 'js-card_discover';
       break;
-  default:
+    default:
       cardInputClass = '';
       break;
- }
+  }
 
- cardInput.classList.forEach(item => {
-     if(item.includes('js-card')) {
+  cardInput.classList.forEach(item => {
+    if (item.includes('js-card')) {
       cardInput.classList.remove(item);
-     }
- });
- 
- cardInput.classList.add(cardInputClass);
+    }
+  });
+
+  cardInput.classList.add(cardInputClass);
 }
 
 function removeError(event) {
   const field = event.target;
   const label = field.closest('label');
   const errorSpan = label.querySelector('.js_error-span');
-  if(errorSpan) {
-      errorSpan.remove();
+  if (errorSpan) {
+    errorSpan.remove();
   }
 }
 
 function checkFilledFields(event) {
+  var checkboxInput = document.querySelector('.checkbox-input:checked');
+
+  if (checkboxInput == null) {
+    event.preventDefault();
+    alert('You must accept terms and conditions to proceed with your purchase.');
+    return;
+  }
   allFields.forEach(field => {
-      if(field.nodeName === 'SELECT' && field.selectedIndex === 0) {
-          setError(field);
-          return false;
+    if (field.nodeName === 'SELECT' && field.selectedIndex === 0) {
+      if (field.closest('.js-shipping-address-unique') && field.closest('.js-invisible-shipping-address')) {
+        return;
+      }
+      setError(field);
+      return false;
+    } else if (field.closest('.js-shipping-address-unique')) {
+      if (field.closest('.js-invisible-shipping-address')) {
+        return;
       } else if (field.value.trim().length === 0) {
-        console.log('set error');
         setError(field);
       }
+    } else if (field.value.trim().length === 0) {
+      console.log('set error');
+      setError(field);
+    }
   });
 
   const result = allFields.some(hasError);
-  if(result) {
+  if (result) {
     event.preventDefault();
     return false;
   }
@@ -213,30 +220,25 @@ function checkFilledFields(event) {
 }
 
 function hasError(element) {
-  
   const label = element.closest('label');
   const error = label.querySelector('.js_error-span');
-  if(error) {
-      return true;
-  } 
+  if (error) {
+    return true;
+  }
   return false;
 }
 
 function setError(field, error = 'Please fill out the field above') {
-  
   const label = field.closest('label');
-  if(!label) return;
+  if (!label) return;
   const oldError = label.querySelector('.js_error-span');
   const errorSpan = document.createElement('span');
 
-  errorSpan.setAttribute(
-    'class',
-    'error-span js_error-span',
-  );
+  errorSpan.setAttribute('class', 'error-span js_error-span');
   errorSpan.textContent = error;
 
-  if(label) {
-      oldError && oldError.remove();
-      label.append(errorSpan);
+  if (label) {
+    oldError && oldError.remove();
+    label.append(errorSpan);
   }
 }
