@@ -3,10 +3,11 @@ import { description } from './product-description.js';
 import { dropdown } from './size-dropdown.js';
 
 export const productTemplate = (product, amount) => {
-    var clothingSizes = ["XS", "S", "M", "L", "XL"];
-  var ringSizes = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
-   
-    return `
+  var clothingSizes = ['XS', 'S', 'M', 'L', 'XL'];
+  var ringSizes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'];
+  var shoeSizes = ['4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16'];
+
+  return `
    <div class="prod__block js_prod__block" id="${product.id}">
    <div class="prod__img-box">
        <img src="${product.image}" alt="" class="img prod__img js_prod__img">
@@ -19,7 +20,7 @@ export const productTemplate = (product, amount) => {
            <h1 class="prod__title js_prod__title">${product.name}</h1>
            <div class="prod__price-box">
                <span class="prod__price">$
-                   <span class="js_price">${(product.price).toFixed(2)}</span>
+                   <span class="js_price">${product.price.toFixed(2)}</span>
                </span>
      
                
@@ -55,11 +56,12 @@ v216c0,11.046,8.954,20,20,20s20-8.954,20-20V276h216c11.046,0,20-8.954,20-20C512,
            </button>
        </div>
        <div class="prod__price-box">
-       <span class="prod__price js_prod__price">$ ${(product.price).toFixed(2)}</span>
+       <span class="prod__price js_prod__price">$ ${product.price.toFixed(2)}</span>
        </div>
 
-       ${product.type == "ring" ? dropdown(ringSizes, "Ring Size:") : ''}
-       ${product.type == "clothing" ? dropdown(clothingSizes, "Clothing Size:") : ''}
+       ${product.type == 'ring' ? dropdown(ringSizes, 'Ring Size:') : ''}
+       ${product.type == 'clothing' ? dropdown(clothingSizes, 'Clothing Size:') : ''}
+        ${product.type == 'shoes' ? dropdown(shoeSizes, 'Shoes Size:') : ''}
        
        <div class="add__btn-box">
        <p class="text success-message js_success-message">Success! You have added <span class="js_success-product-name"></span> to your shopping cart!</p>
@@ -70,10 +72,14 @@ v216c0,11.046,8.954,20,20,20s20-8.954,20-20V276h216c11.046,0,20-8.954,20-20C512,
        <div class="prod__text-block">
        ${description(product.description)}
          </div>
-         ${product.type == "clothing" ? '<img style="width: 100%;" src="img/size_tops.png"> <img style="width: 100%;" src="img/size_bottoms.png">' : ''}
+         ${
+           product.type == 'clothing'
+             ? '<img style="width: 100%;" src="img/size_tops.png"> <img style="width: 100%;" src="img/size_bottoms.png">'
+             : ''
+         }
          
      
    </div>
 </div>
-`
-}
+`;
+};
